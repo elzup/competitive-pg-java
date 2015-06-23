@@ -2,7 +2,7 @@ package acm.tokyo2014;
 
 import java.util.Scanner;
 
-class Main {
+public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         while(true) {
