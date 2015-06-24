@@ -13,6 +13,14 @@ public class Utils {
         }
         System.out.println("---");
     }
+
+    public static int max(int[] ns) {
+        int max = 0;
+        for (int n : ns) {
+            max = Math.max(max, n);
+        }
+        return max;
+    }
 }
 
 class UnionFind {

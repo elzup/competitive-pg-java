@@ -1,109 +1,63 @@
-package acm.tokyo2012;
+package algo;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.lang.reflect.Array;
 import java.util.*;
 
-public class Train {
+public class Knapsack {
+
     static InputStream is;
     static PrintWriter out;
     static String INPUT = "";
 
-    final static int INF = Integer.MAX_VALUE;
-    final static int MAXDIS = 100000;
+    final int INF = Integer.MAX_VALUE;
+    final int MIN = Integer.MIN_VALUE;
 
     static void solve() {
-        while (true) {
-            int n = ni(), m = ni(), c = ni(), s = ni() - 1, g = ni() - 1;
-            if ((n | m | c | s | g) == 0) {
-                break;
-            }
-            int[][] mlist = new int[m][4];
-            int [][][] dispass = new int [c][n][n];
-            for (int i = 0; i < c; i++) {
-                for (int j = 0; j < n; j++) {
-                    Arrays.fill(dispass[i][j], INF);
-                    dispass[i][j][j] = 0;
-                }
-            }
-            for (int i = 0; i < m; i++) {
-                int from = ni() - 1, to = ni() - 1, dis = ni(), nowc = ni() - 1;
-                mlist[i][0] = from;
-                mlist[i][0] = to;
-                mlist[i][0] = dis;
-                mlist[i][0] = nowc;
-                if (dispass[nowc][to][from] > dis) {
-                    dispass[nowc][to][from] = dis;
-                    dispass[nowc][from][to] = dis;
-                }
-            }
-            for (int cind = 0; cind < c; cind++) {
-                for (int j = 0; j < n; j++) {
-                    for (int i = 0; i < n; i++) {
-                        for (int k = 0; k < n; k++) {
-                            dispass[cind][i][k] = Math.min(dispass[cind][i][k], dispass[cind][i][j] + dispass[cind][j][k]);
-                        }
-                    }
-                }
-            }
-
-            int[] plist = new int[c];
-            for (int i = 0; i < c; i++) {
-                plist[i] = ni();
-            }
-
-            ArrayList<ArrayList<Integer>> qlist = new ArrayList<ArrayList<Integer>>();
-            ArrayList<ArrayList<Integer>> rlist = new ArrayList<ArrayList<Integer>>();
-            for (int i = 0; i < c; i++) {
-                qlist.add(new ArrayList<Integer>());
-                qlist.get(i).add(0);
-                rlist.add(new ArrayList<Integer>());
-                for (int j = 0; j < plist[i] - 1; j++) {
-                    qlist.get(i).add(ni());
-                }
-                qlist.get(i).add(MAXDIS);
-                for (int j = 0; j < plist[i]; j++) {
-                    rlist.get(i).add(ni());
-                }
-            }
-
-            int[][] farelist = new int[c][MAXDIS + 1];
-            for (int cInd = 0; cInd < c; cInd++) {
-                ArrayList<Integer> nowq = qlist.get(cInd);
-                for (int i = 1; i < nowq.size(); i++) {
-                    for (int j = nowq.get(i - 1) + 1; j <= nowq.get(i); j++) {
-                        farelist[cInd][j] = farelist[cInd][j - 1] + rlist.get(cInd).get(i - 1);
-                    }
-                }
-            }
-            int [][] pass = new int[n][n];
-
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++) {
-                    int value = INF;
-                    for (int cind = 0; cind < c; cind++) {
-                        int dis = dispass[cind][i][j];
-                        if (dis >= INF) continue;
-                        value = Math.min(value, farelist[cind][dis]);
-                    }
-                    pass[i][j] = value;
-                }
-            }
-
-            for (int j = 0; j < n; j++) {
-                for (int i = 0; i < n; i++) {
-                    for (int k = 0; k < n; k++) {
-                        pass[i][k] = Math.min(pass[i][k], pass[i][j] + pass[j][k]);
-                    }
-                }
-            }
-
-            int ans = pass[s][g] >= INF ? -1 : pass[s][g];
-            System.out.println(ans);
+        int N = ni();
+        int C = ni();
+        int ws[], ps[];
+        ws = new int[N];
+        ps = new int[N];
+        for (int k = 0; k < N; k++) {
+            ps[k] = ni();
+            ws[k] = ni();
         }
+
+        int[][] dp = new int[N + 1][C + 1];
+        int ret = 0;
+        for (int i = 1; i < N + 1; i++) {
+            for (int j = 0; j < C + 1; j++) {
+                if (ws[i - 1] <= j) {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - ws[i - 1]] + ps[i - 1]);
+                } else {
+                    dp[i][j] = dp[i - 1][j];
+                }
+            }
+        }
+        int m = max(dp[N]);
+        // dumpArray(dp);
+        System.out.println(m);
+    }
+
+    public static int max(int[] ns) {
+        int max = 0;
+        for (int n : ns) {
+            max = Math.max(max, n);
+        }
+        return max;
+    }
+
+    public static void dumpArray(int[][] k) {
+        for (int i = 0; i < k.length; i++) {
+            for (int j = 0; j < k[i].length; j++) {
+                System.out.print(k[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println("---");
     }
 
     public static void main(String[] args) throws Exception {
@@ -215,6 +169,7 @@ public class Train {
             minus = true;
             b = readByte();
         }
+
         while (true) {
             if (b >= '0' && b <= '9') {
                 num = num * 10 + (b - '0');
@@ -234,6 +189,7 @@ public class Train {
             minus = true;
             b = readByte();
         }
+
         while (true) {
             if (b >= '0' && b <= '9') {
                 num = num * 10 + (b - '0');
@@ -248,3 +204,4 @@ public class Train {
         if (INPUT.length() != 0) System.out.println(Arrays.deepToString(o));
     }
 }
+
