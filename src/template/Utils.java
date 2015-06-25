@@ -1,14 +1,9 @@
 package template;
 
-import algo.Dijkstra;
-
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-/**
- * Created by hiro on 6/23/15.
- */
 public class Utils {
     public static void dumpArray(int[][] k) {
         for (int i = 0; i < k.length; i++) {
@@ -26,6 +21,28 @@ public class Utils {
             max = Math.max(max, n);
         }
         return max;
+    }
+
+    public static boolean isPrime(int n) {
+        if (n <= 1) {
+            return false;
+        }
+        if (n % 2 == 0) {
+            return n == 2;
+        }
+        for (int i = 3, l = (int) Math.floor(Math.sqrt(n)); i <= l; i += 2) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        // isPrime test
+        for (int i = 0; i < 100; i++) {
+            System.out.println(i + ":" + isPrime(i));
+        }
     }
 }
 
