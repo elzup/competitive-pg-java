@@ -71,7 +71,7 @@ public class Ranking {
 
     static class Team {
         public int[] penarlty;
-        public boolean[] sucsess;
+        public Boolean[] sucsess;
         public int time;
         public int id;
 
@@ -79,7 +79,7 @@ public class Ranking {
             this.id = id + 1;
             this.time = 0;
             this.penarlty = new int[n];
-            this.sucsess = new boolean[n];
+            this.sucsess = new Boolean[n];
             Arrays.fill(this.penarlty, 0);
             Arrays.fill(this.sucsess, false);
         }
@@ -102,11 +102,7 @@ public class Ranking {
         }
 
         public int getSucsessNum() {
-            int sum = 0;
-            for (boolean b : this.sucsess) {
-                sum += b ? 1 : 0;
-            }
-            return sum;
+            return (int) Arrays.stream(this.sucsess).filter(x -> x).count();
         }
 
         public int point() {
