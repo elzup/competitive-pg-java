@@ -186,4 +186,32 @@ class Dice {
         }
         return b;
     }
+
+    // TODO:
+    static void print_perm(int[] perm){
+        for(int x: perm){
+            System.out.print(x + " ");
+        }
+        System.out.println();
+    }
+
+    static void make_perm(int n, int[] perm, boolean[] flag){
+        if(n == perm.length){
+            print_perm(perm);
+        } else {
+            for(int i = 1; i <= perm.length; i++){
+                if(flag[i]) continue;
+                perm[n] = i;
+                flag[i] = true;
+                make_perm(n + 1, perm, flag);
+                flag[i] = false;
+            }
+        }
+    }
+
+    // TODO:
+    static int limit(int n, int up, int down) {
+        return Math.max(down, Math.min(n, up));
+    }
+
 }
