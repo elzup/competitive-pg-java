@@ -46,7 +46,7 @@ public class Qd25Integer {
             p *= i;
         }
 
-        // dumpArray(new int[][]{leasts});
+        // arrayDump(new int[][]{leasts});
 
         id = 0;
         int[][] res = new int[p][emp];
@@ -56,7 +56,7 @@ public class Qd25Integer {
         for (int i = 0; i < p; i++) {
             int[][] map2 = arrayCopy(map);
             int resi = 0;
-            // dumpArray(new int[][] {res[i]});
+            // arrayDump(new int[][] {res[i]});
             for (int ki = 0; ki < 5; ki++) {
                 for (int kj = 0; kj < 5; kj++) {
                     if (map2[ki][kj] == 0) {
@@ -65,7 +65,7 @@ public class Qd25Integer {
                     }
                 }
             }
-            // dumpArray(map2);
+            // arrayDump(map2);
             if (check(map2)) {
                 count++;
             }
@@ -100,7 +100,7 @@ public class Qd25Integer {
         return k2;
     }
 
-    public static void dumpArray(int[][] k) {
+    public static void arrayDump(int[][] k) {
         for (int i = 0; i < k.length; i++) {
             for (int j = 0; j < k[i].length; j++) {
                 System.out.print(k[i][j] + " ");
@@ -110,11 +110,10 @@ public class Qd25Integer {
         System.out.println("---");
     }
 
-    static int id;
-
+    static int permId = 0;
     static void make_perm(int n, int[] perm, boolean[] flag, int[][] res) {
         if (n == perm.length) {
-            res[id++] = perm.clone();
+            res[permId++] = perm.clone();
         } else {
             for (int i = 1; i <= perm.length; i++) {
                 if (flag[i]) continue;

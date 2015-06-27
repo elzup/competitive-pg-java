@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class Utils {
-    public static void dumpArray(int[][] k) {
+    public static void arrayDump(int[][] k) {
         for (int i = 0; i < k.length; i++) {
             for (int j = 0; j < k[i].length; j++) {
                 System.out.print(k[i][j] + " ");
@@ -13,6 +13,20 @@ public class Utils {
             System.out.println();
         }
         System.out.println("---");
+    }
+
+    public static void arrayDump(int[] k) {
+        arrayDump(new int[][]{k});
+    }
+
+    public static int[][] arrayCopy(int[][] k) {
+        int[][] k2 = new int[k.length][k[0].length];
+        for (int i = 0; i < k.length; i++) {
+            for (int j = 0; j < k[i].length; j++) {
+                k2[i][j] = k[i][j];
+            }
+        }
+        return k2;
     }
 
     public static int max(int[] ns) {
