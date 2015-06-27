@@ -72,6 +72,7 @@ public class Qd25Integer {
         }
         System.out.println(count);
     }
+    static int id;
 
     static boolean check(int[][] map) {
         boolean check = true;

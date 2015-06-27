@@ -16,12 +16,28 @@ public class QcTicGame {
     final int INF = Integer.MAX_VALUE;
     final int MIN = Integer.MIN_VALUE;
 
+    static int N;
+    static int M;
+    static int[][] scoreA;
+    static int[][] scoreB;
     static void solve() {
         // map = new int[9];
-    }
+        N = 3;
+        scoreA = new int[2][3];
+        scoreA = new int[3][2];
 
-    static int score() {
-        return 0;
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 3; j++) {
+                scoreA[i][j] = ni();
+            }
+        }
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 2; j++) {
+                scoreB[i][j] = ni();
+            }
+        }
+
+        int[] res = score();
     }
 
     public static void main(String[] args) throws Exception {
@@ -33,6 +49,50 @@ public class QcTicGame {
         out.flush();
         long G = System.currentTimeMillis();
         tr(G - S + "ms");
+    }
+
+    int[] score(int d) {
+        if (d == 9) {
+            int ans = 0;
+            for (int i = 0; i < N; i++) {
+            }
+        } else if (d % 2 == 0) {
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    if (used[i][j] != 0) {
+                        continue;
+                    }
+                }
+                used[i][j] = 2;
+                int tmp = score(d + 1);
+                ans = Math.max(temp, ans))
+                used[i][j] = 0;
+            }
+        }
+    }
+
+    int[] calc(int[][] map) {
+        int a = 0;
+        int b = 0;
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (map[i][j] == map[i + 1][j]) {
+                    a += scoreA[i][j];
+                } else {
+                    b += scoreA[i][j];
+                }
+            }
+        }
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 2; j++) {
+                if (map[i][j] == map[i][j + 1]) {
+                    a += scoreB[i][j];
+                } else {
+                    b += scoreB[i][j];
+                }
+            }
+            return new int[] { a, b };
+        }
     }
 
     private static boolean eof() {
