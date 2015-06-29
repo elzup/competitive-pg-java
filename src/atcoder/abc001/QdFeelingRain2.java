@@ -1,4 +1,4 @@
-package atcoder.abc025;
+package atcoder.abc001;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
-public class QcTicGame {
+public class QdFeelingRain2 {
 
     static InputStream is;
     static PrintWriter out;
@@ -16,28 +16,63 @@ public class QcTicGame {
     final int INF = Integer.MAX_VALUE;
     final int MIN = Integer.MIN_VALUE;
 
-    static int N;
-    static int M;
-    static int[][] scoreA;
-    static int[][] scoreB;
     static void solve() {
-        // map = new int[9];
-        N = 3;
-        scoreA = new int[2][3];
-        scoreA = new int[3][2];
+        /* Unsolved Code! */
+        /* Unsolved Code! */
+        /* Unsolved Code! */
+        /* Unsolved Code! */
+        /* Unsolved Code! */
+        int n = ni();
 
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 3; j++) {
-                scoreA[i][j] = ni();
+        boolean[][] res = new boolean[24][12];
+        for (int i = 0; i < n; i++) {
+            String[] se = ns().split("-");
+            int s = round5(new Integer(se[0]));
+            int e = round5(new Integer(se[1]) - 1);
+            // System.out.println("s: " + s);
+            // System.out.println("e: " + e);
+            int sh = s / 100;
+            int sm = s % 100;
+            int eh = e / 100;
+            int em = e % 100;
+            for (int h = sh; h <= eh; h++) {
+                for (int m = (h == sh) ? sm : 0; (h < eh || (h == eh && m <= em)) && m < 60; m += 5) {
+                    res[h][m / 5] = true;
+                }
             }
         }
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 2; j++) {
-                scoreB[i][j] = ni();
+
+        boolean pre = false;
+        for (int h = 0, il = res.length; h < il - 1; h++) {
+            for (int m = 0, ml = res[h].length; m < ml; m++) {
+                boolean next = (m == ml - 1) ? res[h + 1][0] : res[h][m + 1];
+                if (! pre && res[h][m]) {
+                    System.out.print(String.format("%04d-", h * 100 + m * 5));
+                }
+                if (res[h][m] && !next) {
+                    System.out.println(String.format("%04d", (m == ml - 1) ? (h + 1) * 100 : h * 100 + (m + 1) * 5));
+
+                }
+                pre = res[h][m];
             }
         }
+        if (pre) {
+            System.out.println("2400");
+        }
+    }
 
-        int[] res = score(10);
+    public static <T> void arrayDump(T[][] k) {
+        for (int i = 0; i < k.length; i++) {
+            for (int j = 0; j < k[i].length; j++) {
+                System.out.print(k[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println("---");
+    }
+
+    public static int round5(int n) {
+        return n - n % 5;
     }
 
     public static void main(String[] args) throws Exception {
@@ -49,52 +84,6 @@ public class QcTicGame {
         out.flush();
         long G = System.currentTimeMillis();
         tr(G - S + "ms");
-    }
-
-    static int[] score(int d) {
-        if (d == 9) {
-            int ans = 0;
-            for (int i = 0; i < N; i++) {
-            }
-        } else if (d % 2 == 0) {
-            for (int i = 0; i < N; i++) {
-                //for (int j = 0; j < N; j++) {
-                //    if (used[i][j] != 0) {
-                //        continue;
-                //    }
-                //}
-                //used[i][j] = 2;
-                //int tmp = score(d + 1);
-                //ans = Math.max(temp, ans))
-                //used[i][j] = 0;
-            }
-        }
-        return new int[3];
-    }
-
-    static int[] calc(int[][] map) {
-        int a = 0;
-        int b = 0;
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (map[i][j] == map[i + 1][j]) {
-                    a += scoreA[i][j];
-                } else {
-                    b += scoreA[i][j];
-                }
-            }
-        }
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 2; j++) {
-                if (map[i][j] == map[i][j + 1]) {
-                    a += scoreB[i][j];
-                } else {
-                    b += scoreB[i][j];
-                }
-            }
-            return new int[] { a, b };
-        }
-        return new int[3];
     }
 
     private static boolean eof() {
@@ -230,4 +219,3 @@ public class QcTicGame {
         if (INPUT.length() != 0) System.out.println(Arrays.deepToString(o));
     }
 }
-

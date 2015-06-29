@@ -1,13 +1,12 @@
-package atcoder.abc025;
+package atcoder.abc001;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.util.Arrays;
-import java.util.InputMismatchException;
+import java.util.*;
 
-public class QcTicGame {
+public class QcWindPower {
 
     static InputStream is;
     static PrintWriter out;
@@ -16,28 +15,32 @@ public class QcTicGame {
     final int INF = Integer.MAX_VALUE;
     final int MIN = Integer.MIN_VALUE;
 
-    static int N;
-    static int M;
-    static int[][] scoreA;
-    static int[][] scoreB;
     static void solve() {
-        // map = new int[9];
-        N = 3;
-        scoreA = new int[2][3];
-        scoreA = new int[3][2];
+        float deg = (float) ni() / 10;
+        float dis = (float) Math.round((float) ni() / 6) / 10.0f;
+        String dire = toDireciton(deg);
+        int W = toWind(dis);
+        if (W == 0) {
+            System.out.println("C 0");
+            return;
+        }
+        System.out.println(dire + " " + W);
+    }
 
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 3; j++) {
-                scoreA[i][j] = ni();
+    static String toDireciton(float deg) {
+        String[] lib = "N,NNE,NE,ENE,E,ESE,SE,SSE,S,SSW,SW,WSW,W,WNW,NW,NNW".split(",");
+        float t = 22.5f; // (360 / 16);
+        return lib[(int) ((deg + 11.25f) / t) % 16];
+    }
+
+    static int toWind(float p) {
+        float[] lib = {0.2f, 1.5f, 3.3f, 5.4f, 7.9f, 10.7f, 13.8f, 17.1f, 20.7f, 24.4f, 28.4f, 32.6f};
+        for (int i = 0, l = lib.length; i < l; i++) {
+            if (p <= lib[i]) {
+                return i;
             }
         }
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 2; j++) {
-                scoreB[i][j] = ni();
-            }
-        }
-
-        int[] res = score(10);
+        return 12;
     }
 
     public static void main(String[] args) throws Exception {
@@ -49,52 +52,6 @@ public class QcTicGame {
         out.flush();
         long G = System.currentTimeMillis();
         tr(G - S + "ms");
-    }
-
-    static int[] score(int d) {
-        if (d == 9) {
-            int ans = 0;
-            for (int i = 0; i < N; i++) {
-            }
-        } else if (d % 2 == 0) {
-            for (int i = 0; i < N; i++) {
-                //for (int j = 0; j < N; j++) {
-                //    if (used[i][j] != 0) {
-                //        continue;
-                //    }
-                //}
-                //used[i][j] = 2;
-                //int tmp = score(d + 1);
-                //ans = Math.max(temp, ans))
-                //used[i][j] = 0;
-            }
-        }
-        return new int[3];
-    }
-
-    static int[] calc(int[][] map) {
-        int a = 0;
-        int b = 0;
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (map[i][j] == map[i + 1][j]) {
-                    a += scoreA[i][j];
-                } else {
-                    b += scoreA[i][j];
-                }
-            }
-        }
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 2; j++) {
-                if (map[i][j] == map[i][j + 1]) {
-                    a += scoreB[i][j];
-                } else {
-                    b += scoreB[i][j];
-                }
-            }
-            return new int[] { a, b };
-        }
-        return new int[3];
     }
 
     private static boolean eof() {
@@ -230,4 +187,3 @@ public class QcTicGame {
         if (INPUT.length() != 0) System.out.println(Arrays.deepToString(o));
     }
 }
-

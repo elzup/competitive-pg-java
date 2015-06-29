@@ -5,18 +5,21 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class Utils {
-    public static void arrayDump(int[][] k) {
+
+    public static <T> void arrayDump(T[][] k) {
         for (int i = 0; i < k.length; i++) {
             for (int j = 0; j < k[i].length; j++) {
-                System.out.print(k[i][j] + " ");
+                System.out.print(k[i][j].toString() + " ");
             }
             System.out.println();
         }
         System.out.println("---");
     }
 
-    public static void arrayDump(int[] k) {
-        arrayDump(new int[][]{k});
+    public static <T> void arrayDump(T[] k) {
+        for (int i = 0; i < k.length; i++) {
+            System.out.print(k[i].toString() + " ");
+        }
     }
 
     public static int[][] arrayCopy(int[][] k) {
@@ -58,6 +61,23 @@ public class Utils {
             System.out.println(i + ":" + isPrime(i));
         }
     }
+
+    static String toDireciton(float deg) {
+        String[] lib = "N,NNE,NE,ENE,E,ESE,SE,SSE,S,SSW,SW,WSW,W,WNW,NW,NNW".split(",");
+        float t = 22.5f; // (360 / 16);
+        return lib[(int) ((deg + 11.25f) / t) % 16];
+    }
+
+    static int toWind(float p) {
+        float[] lib = {0.2f, 1.5f, 3.3f, 5.4f, 7.9f, 10.7f, 13.8f, 17.1f, 20.7f, 24.4f, 28.4f, 32.6f};
+        for (int i = 0, l = lib.length; i < l; i++) {
+            if (p <= lib[i]) {
+                return i;
+            }
+        }
+        return 12;
+    }
+
 }
 
 class UnionFind {
