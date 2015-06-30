@@ -12,11 +12,12 @@ public class Main {
     static PrintWriter out;
     static String INPUT = "";
 
-    final int INF = Integer.MAX_VALUE;
-    final int MIN = Integer.MIN_VALUE;
+    final static int INF = Integer.MAX_VALUE;
+    final static int MIN = Integer.MIN_VALUE;
+    final static int LIM = 1000000007;
 
     static void solve() {
-        // TODO: write code
+
     }
 
     public static void main(String[] args) throws Exception {

@@ -1,4 +1,4 @@
-package algo;
+package atcoder.abc003;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -6,56 +6,45 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.*;
 
-public class Knapsack {
+public class QdWinter {
 
     static InputStream is;
     static PrintWriter out;
     static String INPUT = "";
 
-    final int INF = Integer.MAX_VALUE;
-    final int MIN = Integer.MIN_VALUE;
+    final static int INF = Integer.MAX_VALUE;
+    final static int MIN = Integer.MIN_VALUE;
+    final static int LIM = 1000000007;
 
     static void solve() {
-        int N = ni();
+        int R = ni();
         int C = ni();
-        int[] ws = new int[N], ps = new int[N];
-
-        for (int k = 0; k < N; k++) {
-            ps[k] = ni();
-            ws[k] = ni();
+        int X = ni();
+        int Y = ni();
+        int D = ni();
+        int L = ni();
+        if (D + L != X * Y) {
+            System.out.println("b");
+            return;
         }
+        long comb = comb(X * Y, D);
+        // System.out.println(comb);
 
-        int[][] dp = new int[N + 1][C + 1];
-        for (int i = 1; i < N + 1; i++) {
-            for (int j = 0; j < C + 1; j++) {
-                if (ws[i - 1] <= j) {
-                    dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - ws[i - 1]] + ps[i - 1]);
-                } else {
-                    dp[i][j] = dp[i - 1][j];
-                }
-            }
-        }
-        int m = max(dp[N]);
-        // dumpArray(dp);
-        System.out.println(m);
+        System.out.println(comb * (R - X + 1) * (C - Y + 1) % LIM);
     }
 
-    public static int max(int[] ns) {
-        int max = 0;
-        for (int n : ns) {
-            max = Math.max(max, n);
-        }
-        return max;
-    }
-
-    public static void dumpArray(int[][] k) {
-        for (int i = 0; i < k.length; i++) {
-            for (int j = 0; j < k[i].length; j++) {
-                System.out.print(k[i][j] + " ");
+    public static long comb(int a, int b) {
+        long[] k = new long[a + 1];
+        long[] pre = new long[a + 1];
+        pre[0] = 1;
+        for (int i = 0; i < a; i++) {
+            k[0] = 1;
+            for (int j = 1; pre[j - 1] != 0; j++) {
+                k[j] = (pre[j] + pre[j - 1]) % LIM;
             }
-            System.out.println();
+            pre = k.clone();
         }
-        System.out.println("---");
+        return pre[b];
     }
 
     public static void main(String[] args) throws Exception {
@@ -202,4 +191,3 @@ public class Knapsack {
         if (INPUT.length() != 0) System.out.println(Arrays.deepToString(o));
     }
 }
-
