@@ -6,6 +6,29 @@ import java.util.PriorityQueue;
 
 public class Utils {
 
+    public static void main(String[] args) {
+        long a = comb(8, 4);
+        System.out.println(a);
+    }
+
+    public static long comb(int a, int b) {
+        long[] k = new long[a / 2 + 1];
+        long[] pre = new long[a / 2 + 1];
+        pre[0] = 1;
+        for (int i = 1; i <= a; i++) {
+            k[0] = 1;
+            for (int j = 1, lj = i / 2; j <= lj; j++) {
+                if (j == lj) {
+                    k[j] = (i % 2 == 0) ? pre[j - 1] * 2 : pre[j - 1] + pre[j];
+                    break;
+                }
+                k[j] = (pre[j] + pre[j - 1]);
+            }
+            pre = k.clone();
+        }
+        return pre[Math.min(b, a - b)];
+    }
+
     public static <T> void arrayDump(T[][] k) {
         for (int i = 0; i < k.length; i++) {
             for (int j = 0; j < k[i].length; j++) {
@@ -19,6 +42,12 @@ public class Utils {
     public static <T> void arrayDump(T[] k) {
         for (int i = 0; i < k.length; i++) {
             System.out.print(k[i].toString() + " ");
+        }
+    }
+
+    public static void arrayDump(long[] k) {
+        for (int i = 0; i < k.length; i++) {
+            System.out.print(String.format("%5d", k[i]));
         }
     }
 
@@ -53,13 +82,6 @@ public class Utils {
             }
         }
         return true;
-    }
-
-    public static void main(String[] args) {
-        // isPrime test
-        for (int i = 0; i < 100; i++) {
-            System.out.println(i + ":" + isPrime(i));
-        }
     }
 
     static String toDireciton(float deg) {
