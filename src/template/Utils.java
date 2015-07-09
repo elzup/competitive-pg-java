@@ -100,6 +100,26 @@ public class Utils {
         return 12;
     }
 
+    // 最大公約数
+    public static long gcd(long a, long b) {
+        if (b == 0) {
+            return a;
+        }
+        return gcd(b, a % b);
+    }
+
+    // 最小公倍数
+    public static long lcm(long a, long b) {
+        return a * b / gcd(a, b);
+    }
+
+    public static double[] simultaneousEquation(double a, double b, double c, double d, double e, double f) {
+        double t = a * d - c * b;
+        double x = (d * e - b * f) / t;
+        double y = (a * f - c * e) / t;
+        return new double[]{ x, y };
+    }
+
 }
 
 class UnionFind {
