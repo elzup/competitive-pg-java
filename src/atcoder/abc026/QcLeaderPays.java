@@ -1,4 +1,4 @@
-package codeforces;
+package atcoder.abc026;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -6,29 +6,46 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.*;
 
-public class QbTeacup {
+public class QcLeaderPays {
 
     static InputStream is;
     static PrintWriter out;
     static String INPUT = "";
 
-    final int INF = Integer.MAX_VALUE;
-    final int MIN = Integer.MIN_VALUE;
+    final static int INF = Integer.MAX_VALUE;
+    final static int MIN = Integer.MIN_VALUE;
 
     static void solve() {
-        int n = ni();
-        float l = ni();
-        int[] k = new int[n * 2];
-        for (int i = 0; i < n * 2; i++) {
-            k[i] = ni();
+        int N = ni();
+        int[] bs = new int[N];
+        int[] ks = new int[N];
+        int[][] kss = new int[N][N];
+        bs[0] = 0;
+        for (int i = 1; i < N; i++) {
+            bs[i] = ni() - 1;
         }
-        Arrays.sort(k);
-        float t = Math.min(k[n], l / n);
-        l -= t * n;
-        float a = t * n;
-        t = Math.min(k[0], Math.min((float)k[n] / 2, l / n));
-        float b = t * n;
-        System.out.println(a + b);
+        for (int i = N - 1; i >= 0; i--) {
+            int p = bs[i];
+            int vs = 0;
+            int max = 0, min = INF;
+            for (int j = 0; j < N; j++) {
+                if (kss[i][j] != 0) {
+                    vs++;
+                    max = Math.max(max, kss[i][j]);
+                    min = Math.min(min, kss[i][j]);
+                }
+            }
+            if (vs == 0) {
+                ks[i] = 1;
+            } else if (vs == 1) {
+                ks[i] = 2 * max + 1;
+            } else {
+                ks[i] = max + min + 1;
+            }
+            kss[p][i] = ks[i];
+        }
+        System.out.println(ks[0]);
+
     }
 
     public static void main(String[] args) throws Exception {
@@ -175,3 +192,4 @@ public class QbTeacup {
         if (INPUT.length() != 0) System.out.println(Arrays.deepToString(o));
     }
 }
+

@@ -1,4 +1,4 @@
-package atcoder.abc026;
+package codeforces.rount311.div2;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -6,70 +6,55 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.*;
 
-import static java.lang.Double.parseDouble;
-import static java.lang.Integer.MAX_VALUE;
-import static java.lang.Integer.MIN_VALUE;
-import static java.lang.System.currentTimeMillis;
-import static java.lang.System.in;
-import static java.util.Arrays.copyOf;
-import static java.util.Arrays.deepToString;
-
-public class Qd {
+public class QaDiplomas {
 
     static InputStream is;
     static PrintWriter out;
     static String INPUT = "";
 
-    final static int INF = MAX_VALUE;
-    final static int MIN = MIN_VALUE;
-
-    static int A;
-    static int B;
-    static int C;
+    final int INF = Integer.MAX_VALUE;
+    final int MIN = Integer.MIN_VALUE;
 
     static void solve() {
-        A = ni();
-        B = ni();
-        C = ni();
-        double res = 0;
-        double preRes = 0;
-        double t = 0;
-        int k = 0;
+        int n = ni();
+        int min1 = ni();
+        int max1 = ni();
+        int min2 = ni();
+        int max2 = ni();
+        int min3 = ni();
+        int max3 = ni();
+        int a = min1;
+        int b = min2;
+        int c = min3;
 
-        while (k <= 20) {
-            double kt = Math.pow(0.1f, k);
-            // System.out.printf("kt[%d]: %f\n", k, kt);
-            while (true) {
-                res = calc(t);
-                // System.out.println(t + ": " + res);
-                if (99.999999 <= res) {
-                    break;
-                }
-                preRes = res;
-                t += kt;
-            }
-            if (99.999999 <= res && res <= 100.000001f) {
-                break;
-            }
-            res = preRes;
-            t -= kt;
-            k++;
+        int least = n - (a + b + c);
+        if (least != 0) {
+            int t = Math.min(max1 - a, least);
+            a += t;
+            least -= t;
         }
-        System.out.println(t);
-    }
+        if (least != 0) {
+            int t = Math.min(max2 - b, least);
+            b += t;
+            least -= t;
+        }
+        if (least != 0) {
+            int t = Math.min(max3 - c, least);
+            c += t;
+            least -= t;
+        }
+        System.out.println(a + " " + b + " " + c);
 
-    public static double calc(double t) {
-        return A * t + B * Math.sin(C * t * Math.PI);
     }
 
     public static void main(String[] args) throws Exception {
-        long S = currentTimeMillis();
-        is = INPUT.isEmpty() ? in : new ByteArrayInputStream(INPUT.getBytes());
+        long S = System.currentTimeMillis();
+        is = INPUT.isEmpty() ? System.in : new ByteArrayInputStream(INPUT.getBytes());
         out = new PrintWriter(System.out);
 
         solve();
         out.flush();
-        long G = currentTimeMillis();
+        long G = System.currentTimeMillis();
         tr(G - S + "ms");
     }
 
@@ -124,7 +109,7 @@ public class Qd {
     }
 
     private static double nd() {
-        return parseDouble(ns());
+        return Double.parseDouble(ns());
     }
 
     private static char nc() {
@@ -148,7 +133,7 @@ public class Qd {
             buf[p++] = (char) b;
             b = readByte();
         }
-        return n == p ? buf : copyOf(buf, p);
+        return n == p ? buf : Arrays.copyOf(buf, p);
     }
 
     private static char[][] nm(int n, int m) {
@@ -203,6 +188,6 @@ public class Qd {
     }
 
     private static void tr(Object... o) {
-        if (INPUT.length() != 0) System.out.println(deepToString(o));
+        if (INPUT.length() != 0) System.out.println(Arrays.deepToString(o));
     }
 }

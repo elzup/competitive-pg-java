@@ -1,4 +1,10 @@
-package codeforces;
+package atcoder.abc026;
+
+import static java.lang.Double.parseDouble;
+import static java.lang.Integer.MAX_VALUE;
+import static java.lang.Integer.MIN_VALUE;
+import static java.lang.System.currentTimeMillis;
+import static java.lang.System.in;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -6,55 +12,32 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.*;
 
-public class QaDiplomas {
+public class QaMaxMuliple {
 
     static InputStream is;
     static PrintWriter out;
     static String INPUT = "";
 
-    final int INF = Integer.MAX_VALUE;
-    final int MIN = Integer.MIN_VALUE;
+    final int INF = MAX_VALUE;
+    final int MIN = MIN_VALUE;
 
     static void solve() {
-        int n = ni();
-        int min1 = ni();
-        int max1 = ni();
-        int min2 = ni();
-        int max2 = ni();
-        int min3 = ni();
-        int max3 = ni();
-        int a = min1;
-        int b = min2;
-        int c = min3;
-
-        int least = n - (a + b + c);
-        if (least != 0) {
-            int t = Math.min(max1 - a, least);
-            a += t;
-            least -= t;
+                int x = ni();
+        int max = 0;
+        for (int i = 1; i < x / 2 + 1; i++) {
+            max = Math.max(max, i * (x - i));
         }
-        if (least != 0) {
-            int t = Math.min(max2 - b, least);
-            b += t;
-            least -= t;
-        }
-        if (least != 0) {
-            int t = Math.min(max3 - c, least);
-            c += t;
-            least -= t;
-        }
-        System.out.println(a + " " + b + " " + c);
-
+        System.out.println(max);
     }
 
     public static void main(String[] args) throws Exception {
-        long S = System.currentTimeMillis();
-        is = INPUT.isEmpty() ? System.in : new ByteArrayInputStream(INPUT.getBytes());
+        long S = currentTimeMillis();
+        is = INPUT.isEmpty() ? in : new ByteArrayInputStream(INPUT.getBytes());
         out = new PrintWriter(System.out);
 
         solve();
         out.flush();
-        long G = System.currentTimeMillis();
+        long G = currentTimeMillis();
         tr(G - S + "ms");
     }
 
@@ -109,7 +92,7 @@ public class QaDiplomas {
     }
 
     private static double nd() {
-        return Double.parseDouble(ns());
+        return parseDouble(ns());
     }
 
     private static char nc() {

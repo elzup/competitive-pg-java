@@ -6,37 +6,70 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.*;
 
-public class Qb {
+import static java.lang.Double.parseDouble;
+import static java.lang.Integer.MAX_VALUE;
+import static java.lang.Integer.MIN_VALUE;
+import static java.lang.System.currentTimeMillis;
+import static java.lang.System.in;
+import static java.util.Arrays.copyOf;
+import static java.util.Arrays.deepToString;
+
+public class QdTakahashiBall1 {
 
     static InputStream is;
     static PrintWriter out;
     static String INPUT = "";
 
-    final int INF = Integer.MAX_VALUE;
-    final int MIN = Integer.MIN_VALUE;
+    final static int INF = MAX_VALUE;
+    final static int MIN = MIN_VALUE;
+
+    static int A;
+    static int B;
+    static int C;
 
     static void solve() {
-        int n = ni();
+        A = ni();
+        B = ni();
+        C = ni();
+        double res = 0;
+        double preRes = 0;
+        double t = 0;
         int k = 0;
-        int[] rs = new int[n];
-        for (int i = 0; i < n; i++) {
-            rs[i] = ni();
+
+        while (k <= 20) {
+            double kt = Math.pow(0.1f, k);
+            // System.out.printf("kt[%d]: %f\n", k, kt);
+            while (true) {
+                res = calc(t);
+                // System.out.println(t + ": " + res);
+                if (99.999999 <= res) {
+                    break;
+                }
+                preRes = res;
+                t += kt;
+            }
+            if (99.999999 <= res && res <= 100.000001f) {
+                break;
+            }
+            res = preRes;
+            t -= kt;
+            k++;
         }
-        Arrays.sort(rs);
-        for (int i = 0; i < n; i++) {
-            k += Math.pow(rs[n - i - 1], 2) * (i % 2 == 0 ? 1 : -1);
-        }
-        System.out.println(k * Math.PI);
+        System.out.println(t);
+    }
+
+    public static double calc(double t) {
+        return A * t + B * Math.sin(C * t * Math.PI);
     }
 
     public static void main(String[] args) throws Exception {
-        long S = System.currentTimeMillis();
-        is = INPUT.isEmpty() ? System.in : new ByteArrayInputStream(INPUT.getBytes());
+        long S = currentTimeMillis();
+        is = INPUT.isEmpty() ? in : new ByteArrayInputStream(INPUT.getBytes());
         out = new PrintWriter(System.out);
 
         solve();
         out.flush();
-        long G = System.currentTimeMillis();
+        long G = currentTimeMillis();
         tr(G - S + "ms");
     }
 
@@ -91,7 +124,7 @@ public class Qb {
     }
 
     private static double nd() {
-        return Double.parseDouble(ns());
+        return parseDouble(ns());
     }
 
     private static char nc() {
@@ -115,7 +148,7 @@ public class Qb {
             buf[p++] = (char) b;
             b = readByte();
         }
-        return n == p ? buf : Arrays.copyOf(buf, p);
+        return n == p ? buf : copyOf(buf, p);
     }
 
     private static char[][] nm(int n, int m) {
@@ -170,6 +203,6 @@ public class Qb {
     }
 
     private static void tr(Object... o) {
-        if (INPUT.length() != 0) System.out.println(Arrays.deepToString(o));
+        if (INPUT.length() != 0) System.out.println(deepToString(o));
     }
 }

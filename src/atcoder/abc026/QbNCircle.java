@@ -1,43 +1,42 @@
 package atcoder.abc026;
 
-import static java.lang.Double.parseDouble;
-import static java.lang.Integer.MAX_VALUE;
-import static java.lang.Integer.MIN_VALUE;
-import static java.lang.System.currentTimeMillis;
-import static java.lang.System.in;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.*;
 
-public class Qa {
+public class QbNCircle {
 
     static InputStream is;
     static PrintWriter out;
     static String INPUT = "";
 
-    final int INF = MAX_VALUE;
-    final int MIN = MIN_VALUE;
+    final int INF = Integer.MAX_VALUE;
+    final int MIN = Integer.MIN_VALUE;
 
     static void solve() {
-                int x = ni();
-        int max = 0;
-        for (int i = 1; i < x / 2 + 1; i++) {
-            max = Math.max(max, i * (x - i));
+        int n = ni();
+        int k = 0;
+        int[] rs = new int[n];
+        for (int i = 0; i < n; i++) {
+            rs[i] = ni();
         }
-        System.out.println(max);
+        Arrays.sort(rs);
+        for (int i = 0; i < n; i++) {
+            k += Math.pow(rs[n - i - 1], 2) * (i % 2 == 0 ? 1 : -1);
+        }
+        System.out.println(k * Math.PI);
     }
 
     public static void main(String[] args) throws Exception {
-        long S = currentTimeMillis();
-        is = INPUT.isEmpty() ? in : new ByteArrayInputStream(INPUT.getBytes());
+        long S = System.currentTimeMillis();
+        is = INPUT.isEmpty() ? System.in : new ByteArrayInputStream(INPUT.getBytes());
         out = new PrintWriter(System.out);
 
         solve();
         out.flush();
-        long G = currentTimeMillis();
+        long G = System.currentTimeMillis();
         tr(G - S + "ms");
     }
 
@@ -92,7 +91,7 @@ public class Qa {
     }
 
     private static double nd() {
-        return parseDouble(ns());
+        return Double.parseDouble(ns());
     }
 
     private static char nc() {
