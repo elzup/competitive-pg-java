@@ -7,8 +7,12 @@ import java.util.PriorityQueue;
 public class Utils {
 
     public static void main(String[] args) {
-        long a = comb(8, 4);
-        System.out.println(a);
+        for (int i = 0; i < 100; i++) {
+            System.out.println("> " + i);
+            int[] p1 = spiralPos(i);
+            System.out.println(p1[0] + ", " + p1[1]);
+            System.out.println();
+        }
     }
 
     public static long comb(int a, int b) {
@@ -120,6 +124,21 @@ public class Utils {
         return new double[]{ x, y };
     }
 
+    public static int[] spiralPos(int t) {
+        int x = (int) Math.floor((-1 + Math.sqrt(1 + 4 * t)) / 2) + 1;
+        int m = ((x % 2 * -2) + 1);
+        int k = (x / 2) * m;
+        // 残りの部分 = t - 総和
+        int s = t - (x - 1) * ((x - 1) + 1);
+        m *= -1;
+        int mx = k;
+        int my = k + s * m;
+        if (x < s) {
+            mx = k + (s - x) * m;
+            my = k + x * m;
+        }
+        return new int[] {my, mx};
+    }
 }
 
 class UnionFind {
