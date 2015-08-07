@@ -6,6 +6,17 @@ import java.util.PriorityQueue;
 
 public class Utils {
 
+    final static int AN = (int) 'a';
+    final static int ZN = (int) 'z';
+    final static int LBN = (int) '(';
+    final static int RBN = (int) ')';
+    final static int _0N = (int) '0';
+    final static int _9N = (int) '9';
+
+    final static int INF = Integer.MAX_VALUE;
+    final static int MIN = Integer.MIN_VALUE;
+    final static int LIM = 1000000007;
+
     public static void main(String[] args) {
         for (int i = 0; i < 100; i++) {
             System.out.println("> " + i);
