@@ -17,6 +17,8 @@ public class Utils {
     final static int MIN = Integer.MIN_VALUE;
     final static int LIM = 1000000007;
 
+    final static int[][] dirs = new int[][]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+
     public static void main(String[] args) {
         for (int i = 0; i < 100; i++) {
             System.out.println("> " + i);
@@ -44,10 +46,10 @@ public class Utils {
         return pre[Math.min(b, a - b)];
     }
 
-    public static <T> void arrayDump(T[][] k) {
+    public static void arrayDump(int[][] k) {
         for (int i = 0; i < k.length; i++) {
             for (int j = 0; j < k[i].length; j++) {
-                System.out.print(k[i][j].toString() + " ");
+                System.out.print(k[i][j] + " ");
             }
             System.out.println();
         }
@@ -60,7 +62,7 @@ public class Utils {
         }
     }
 
-    public static void arrayDump(long[] k) {
+    public static void arrayDump(int[] k) {
         for (int i = 0; i < k.length; i++) {
             System.out.print(String.format("%5d", k[i]));
         }
