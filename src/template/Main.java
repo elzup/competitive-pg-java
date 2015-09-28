@@ -20,17 +20,6 @@ public class Main {
 
     }
 
-    public static void main(String[] args) throws Exception {
-        long S = System.currentTimeMillis();
-        is = INPUT.isEmpty() ? System.in : new ByteArrayInputStream(INPUT.getBytes());
-        out = new PrintWriter(System.out);
-
-        solve();
-        out.flush();
-        long G = System.currentTimeMillis();
-        tr(G - S + "ms");
-    }
-
     private static boolean eof() {
         if (lenbuf == -1) return true;
         int lptr = ptrbuf;
