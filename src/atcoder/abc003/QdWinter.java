@@ -17,23 +17,45 @@ public class QdWinter {
     final static int LIM = 1000000007;
 
     static void solve() {
-        int R = ni();
-        int C = ni();
-        int X = ni();
-        int Y = ni();
-        int D = ni();
-        int L = ni();
-        if (D + L != X * Y) {
-            System.out.println("b");
-            return;
-        }
-        long comb = comb(X * Y, D);
+        Scanner sc = new Scanner(System.in);
+        int R = sc.nextInt();
+        int C = sc.nextInt();
+        int X = sc.nextInt();
+        int Y = sc.nextInt();
+        int D = sc.nextInt();
+        int L = sc.nextInt();
+        long comb = inComb(X, Y, D, L);
         // System.out.println(comb);
 
         System.out.println(comb * (R - X + 1) * (C - Y + 1) % LIM);
     }
 
+    public static long inComb(int x, int y, int d, int l) {
+        long all = comb(x * y, d + l);
+        System.out.println(ignore(x, y, d + l));
+        return (all - ignore(x, y, d + l)) * comb(x * y, d);
+    }
+
+    public static long ignore(int x, int y, int n) {
+        long ig = 0;
+        ig += comb((x - 1) *       y, n) * 2;
+        ig += comb(      x * (y - 1), n) * 2;
+
+        ig -= comb((x - 1) * (y - 1), n) * 4;
+        ig -= comb((x - 2) *       y, n);
+        ig -= comb(      x * (y - 2), n);
+
+        ig += comb((x - 2) * (y - 1), n) * 4;
+        ig += comb((x - 1) * (y - 2), n) * 4;
+
+        ig -= comb((x - 2) * (y - 2), n) * 6;
+        return ig;
+    }
+
     public static long comb(int a, int b) {
+        if (a < b) {
+            return 0;
+        }
         long[] k = new long[a + 1];
         long[] pre = new long[a + 1];
         pre[0] = 1;
@@ -49,145 +71,8 @@ public class QdWinter {
 
     public static void main(String[] args) throws Exception {
         long S = System.currentTimeMillis();
-        is = INPUT.isEmpty() ? System.in : new ByteArrayInputStream(INPUT.getBytes());
-        out = new PrintWriter(System.out);
-
         solve();
-        out.flush();
         long G = System.currentTimeMillis();
-        tr(G - S + "ms");
-    }
-
-    private static boolean eof() {
-        if (lenbuf == -1) return true;
-        int lptr = ptrbuf;
-        while (lptr < lenbuf) if (!isSpaceChar(inbuf[lptr++])) return false;
-
-        try {
-            is.mark(1000);
-            while (true) {
-                int b = is.read();
-                if (b == -1) {
-                    is.reset();
-                    return true;
-                } else if (!isSpaceChar(b)) {
-                    is.reset();
-                    return false;
-                }
-            }
-        } catch (IOException e) {
-            return true;
-        }
-    }
-
-    private static byte[] inbuf = new byte[1024];
-    static int lenbuf = 0, ptrbuf = 0;
-
-    private static int readByte() {
-        if (lenbuf == -1) throw new InputMismatchException();
-        if (ptrbuf >= lenbuf) {
-            ptrbuf = 0;
-            try {
-                lenbuf = is.read(inbuf);
-            } catch (IOException e) {
-                throw new InputMismatchException();
-            }
-            if (lenbuf <= 0) return -1;
-        }
-        return inbuf[ptrbuf++];
-    }
-
-    private static boolean isSpaceChar(int c) {
-        return !(c >= 33 && c <= 126);
-    }
-
-    //	private static boolean isSpaceChar(int c) { return !(c >= 32 && c <= 126); }
-    private static int skip() {
-        int b;
-        while ((b = readByte()) != -1 && isSpaceChar(b)) ;
-        return b;
-    }
-
-    private static double nd() {
-        return Double.parseDouble(ns());
-    }
-
-    private static char nc() {
-        return (char) skip();
-    }
-
-    private static String ns() {
-        int b = skip();
-        StringBuilder sb = new StringBuilder();
-        while (!(isSpaceChar(b))) {
-            sb.appendCodePoint(b);
-            b = readByte();
-        }
-        return sb.toString();
-    }
-
-    private static char[] ns(int n) {
-        char[] buf = new char[n];
-        int b = skip(), p = 0;
-        while (p < n && !(isSpaceChar(b))) {
-            buf[p++] = (char) b;
-            b = readByte();
-        }
-        return n == p ? buf : Arrays.copyOf(buf, p);
-    }
-
-    private static char[][] nm(int n, int m) {
-        char[][] map = new char[n][];
-        for (int i = 0; i < n; i++) map[i] = ns(m);
-        return map;
-    }
-
-    private static int[] na(int n) {
-        int[] a = new int[n];
-        for (int i = 0; i < n; i++) a[i] = ni();
-        return a;
-    }
-
-    private static int ni() {
-        int num = 0, b;
-        boolean minus = false;
-        while ((b = readByte()) != -1 && !((b >= '0' && b <= '9') || b == '-')) ;
-        if (b == '-') {
-            minus = true;
-            b = readByte();
-        }
-
-        while (true) {
-            if (b >= '0' && b <= '9') {
-                num = num * 10 + (b - '0');
-            } else {
-                return minus ? -num : num;
-            }
-            b = readByte();
-        }
-    }
-
-    private static long nl() {
-        long num = 0;
-        int b;
-        boolean minus = false;
-        while ((b = readByte()) != -1 && !((b >= '0' && b <= '9') || b == '-')) ;
-        if (b == '-') {
-            minus = true;
-            b = readByte();
-        }
-
-        while (true) {
-            if (b >= '0' && b <= '9') {
-                num = num * 10 + (b - '0');
-            } else {
-                return minus ? -num : num;
-            }
-            b = readByte();
-        }
-    }
-
-    private static void tr(Object... o) {
-        if (INPUT.length() != 0) System.out.println(Arrays.deepToString(o));
+        System.out.println(G - S + "ms");
     }
 }
