@@ -1,82 +1,85 @@
 package atcoder.atc001;
 
-import java.util.ArrayList;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Scanner;
 
 public class Main {
+
+    public static Deque<Integer> stack;
+    public static int[][] map;
+
+    public static final int GOAL = 2;
+    public static final int START = 1;
+    public static final int EMP = 0;
+    public static final int WALL = 5;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int h = sc.nextInt();
         int w = sc.nextInt();
         sc.nextLine();
+        stack = new ArrayDeque<>();
+        map = new int[h][w];
 
-        Node startNode = null;
-        Node[][] nodes = new Node[h][w];
         for (int i = 0; i < h; i++) {
             String line = sc.nextLine();
             for (int j = 0; j < w; j++) {
                 char c = line.charAt(j);
                 if (c == '#') {
-                    continue;
-                }
-                Node n = new Node();
-                nodes[i][j] = n;
-                if (c == 'g') {
-                    n.setGoal();
-                }
-                if (c == 's') {
-                    startNode = n;
-                }
-                if (i > 0 && nodes[i - 1][j] != null) {
-                    nodes[i - 1][j].add(n);
-                    n.add(nodes[i - 1][j]);
-                }
-                if (j > 0 && nodes[i][j - 1] != null) {
-                    nodes[i][j - 1].add(n);
-                    n.add(nodes[i][j - 1]);
+                    map[i][j] = WALL;
+                } else if (c == 'g') {
+                    map[i][j] = GOAL;
+                } else if (c == 's') {
+                    stack.addFirst(i * w + j);
+                    map[i][j] = EMP;
+                } else{
+                    map[i][j] = EMP;
                 }
             }
         }
-        assert startNode != null;
-        System.out.println(startNode.fire() ? "Yes" : "No");
+        while (stack.size() > 0) {
+            // System.out.println(stack.size() + ", " + stack.getFirst());
+            int i = stack.getFirst() / w;
+            int j = stack.getFirst() % w;
+            // System.out.println(i + ": " + j + " >" + map[i][j]);
+            // arrayDump(map);
+            if (map[i][j] == GOAL) {
+                System.out.println("Yes");
+                return;
+            }
+            map[i][j] = WALL;
+            if (i > 0 && map[i - 1][j] != WALL) {
+                stack.addFirst((i - 1) * w + j);
+                // System.out.println("<i");
+                continue;
+            } else if (j > 0 && map[i][j - 1] != WALL) {
+                stack.addFirst(i * w + (j - 1));
+                // System.out.println("<j");
+                continue;
+            } else if (i < h - 1 && map[i + 1][j] != WALL) {
+                stack.addFirst((i + 1) * w + j);
+                // System.out.println("i>");
+                continue;
+            } else if (j < w - 1 && map[i][j + 1] != WALL) {
+                stack.addFirst(i * w + (j + 1));
+                // System.out.println("j>");
+                continue;
+            } else {
+                // System.out.println("pop" + stack.getFirst());
+                stack.removeFirst();
+            }
+        }
+        System.out.println("No");
     }
 
-
-    public static class Node {
-        public static final int INIT = 0;
-        public static final int CLOSE = 2;
-
-        public ArrayList<Node> nodes;
-        public int status;
-        public boolean goal = false;
-
-        public Node() {
-            this.nodes = new ArrayList<>();
-            this.status = INIT;
-        }
-
-        public void setGoal() {
-            this.goal = true;
-        }
-
-        public void add(Node node) {
-            this.nodes.add(node);
-        }
-
-        public boolean fire() {
-            if (this.goal) {
-                return true;
+    public static void arrayDump(int[][] a) {
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a[0].length; j++) {
+                System.out.print(a[i][j] + " ");
             }
-            if (this.status == CLOSE) {
-                return false;
-            }
-            this.status = CLOSE;
-            for (Node n: this.nodes) {
-                if (n.fire()) {
-                    return true;
-                }
-            }
-            return false;
+            System.out.println();
         }
+        System.out.println("--------");
     }
 }
