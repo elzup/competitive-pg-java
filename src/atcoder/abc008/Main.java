@@ -1,34 +1,41 @@
 package atcoder.abc008;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
+    public static int w, h, n;
+    public static int[][] points;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[] c = new int[n];
-        double s = (double) n / 2;
+        w = sc.nextInt();
+        h = sc.nextInt();
+        n = sc.nextInt();
+        if (w > 80 || h > 80 || n > 8) {
+            System.out.println("\\(^o^)/");
+        }
+        points = new int[n][2];
         for (int i = 0; i < n; i++) {
-            c[i] = sc.nextInt();
+            int x = sc.nextInt();
+            int y = sc.nextInt();
         }
-        for (int i = 0; i < n; i++) {
-            int d = 0;
-            for (int j = 0; j < n; j++) {
-                if (c[i] % c[j] == 0) {
-                    d += 1;
-                }
-            }
-            if (d % 2 == 1) {
-                s += (d + 1) * 0.5d / d - 0.5d;
-            }
-        }
-        System.out.println(s);
-    }
-
-    public static void arrayDump(int[] k) {
-        for (int i = 0; i < k.length; i++) {
-            System.out.print(String.format("%3d", k[i]));
-        }
+        combs(new ArrayList<>(), 0, new int[][]{});
         System.out.println();
     }
+
+    public static void combs(ArrayList<Integer> cs, int k, int[][] m) {
+        if (k == cs.size()) {
+            m[m.length] = cs.stream().mapToInt(i -> i).toArray();
+            return;
+        }
+        for (int i = 0, l = cs.size(); i < l; i++) {
+            if (cs.contains(l)) {
+                continue;
+            }
+            cs.add(i);
+            combs(cs, k + 1, m);
+            cs.remove(cs.size() - 1);
+        }
+    }
+
 }
