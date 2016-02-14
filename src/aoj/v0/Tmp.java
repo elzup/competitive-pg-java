@@ -2,7 +2,7 @@ package aoj.v0;
 
 import java.util.Scanner;
 
-public class Main {
+public class Tmp {
     public static Scanner sc;
     /* 最大部分和 */
     public static void main(String[] args) {
