@@ -1,0 +1,19 @@
+package atcoder.arc.arc049;
+
+import java.util.Scanner;
+
+public class QaBold {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+        int d = sc.nextInt();
+        s = s.substring(0, a) + "\"" + s.substring(a);
+        s = s.substring(0, b + 1) + "\"" + s.substring(b + 1);
+        s = s.substring(0, c + 2) + "\"" + s.substring(c + 2);
+        s = s.substring(0, d + 3) + "\"" + s.substring(d + 3);
+        System.out.println(s);
+    }
+}
