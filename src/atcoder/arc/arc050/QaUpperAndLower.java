@@ -1,0 +1,12 @@
+package atcoder.arc.arc050;
+
+import java.util.Scanner;
+
+public class QaUpperAndLower {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String u = sc.next();
+        String l = sc.next();
+        System.out.println((((int) l.charAt(0)) - (int) u.charAt(0) == 32) ? "Yes" : "No");
+    }
+}
