@@ -7,40 +7,22 @@ public class QcOthello {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int q = sc.nextInt();
-        ArrayList<Integer> points = new ArrayList<>();
+        int[] ps = new int[n + 1];
 
         for (int i = 0; i < q; i++) {
             int l = sc.nextInt() - 1;
             int r = sc.nextInt() - 1;
-            if (points.contains(l)) {
-                points.remove(new Integer(l));
-            } else {
-                points.add(l);
-            }
-            if (points.contains(r + 1)) {
-                points.remove(new Integer(r + 1));
-            } else {
-                points.add(r + 1);
-            }
-        }
-        Collections.sort(points);
-        // printArray(points);
-
-        boolean face = false;
-        String res = strRepeat(points.get(0), "0");
-
-        for (int i = 0, l = points.size(); i < l; i ++) {
-            int p = points.get(i);
-            int np = n;
-            if (i + 1 < l) {
-                np = points.get(i + 1);
-            }
-            int len = np - p;
-            res += strRepeat(len, face ? "0" : "1");
-            face = !face;
+            ps[l]++;
+            ps[r + 1]++;
         }
 
-        System.out.println(res);
+        int sum = 0;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0, l = ps.length; i < l - 1; i++) {
+            sum += ps[i];
+            sb.append(sum % 2 == 0 ? "0" : "1");
+        }
+        System.out.println(sb);
     }
 
     static String strRepeat(int n, String str) {
