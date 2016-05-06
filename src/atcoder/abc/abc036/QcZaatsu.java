@@ -1,0 +1,33 @@
+package atcoder.abc.abc036;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class QcZaatsu {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] a = new int[n];
+
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextInt();
+            int k = Collections.binarySearch(list, a[i]);
+            if (k < 0) {
+                list.add(~k, a[i]);
+            }
+        }
+
+        HashMap<Integer, Integer> lib = new HashMap<>();
+        for (int i = 0; i < list.size(); i++) {
+            lib.put(list.get(i), i);
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i: a) {
+            sb.append(lib.get(i) + "\n");
+        }
+        System.out.println(sb);
+    }
+}
