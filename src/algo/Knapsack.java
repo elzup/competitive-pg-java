@@ -8,6 +8,7 @@ import java.util.*;
 
 public class Knapsack {
 
+    // ナップサック
     static InputStream is;
     static PrintWriter out;
     static String INPUT = "";

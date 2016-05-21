@@ -8,6 +8,7 @@ import java.util.*;
 
 public class Dijkstra {
 
+    // ダイクストラ
     static InputStream is;
     static PrintWriter out;
     static String INPUT = "";
