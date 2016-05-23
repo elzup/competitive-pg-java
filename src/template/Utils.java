@@ -132,7 +132,7 @@ public class Utils {
         double t = a * d - c * b;
         double x = (d * e - b * f) / t;
         double y = (a * f - c * e) / t;
-        return new double[]{ x, y };
+        return new double[]{x, y};
     }
 
     public static int[] spiralPos(int t) {
@@ -148,7 +148,7 @@ public class Utils {
             mx = k + (s - x) * m;
             my = k + x * m;
         }
-        return new int[] {my, mx};
+        return new int[]{my, mx};
     }
 }
 
@@ -294,19 +294,19 @@ class Dice {
     }
 
     // TODO:
-    static void print_perm(int[] perm){
-        for(int x: perm){
+    static void print_perm(int[] perm) {
+        for (int x : perm) {
             System.out.print(x + " ");
         }
         System.out.println();
     }
 
-    static void make_perm(int n, int[] perm, boolean[] flag){
-        if(n == perm.length){
+    static void make_perm(int n, int[] perm, boolean[] flag) {
+        if (n == perm.length) {
             print_perm(perm);
         } else {
-            for(int i = 1; i <= perm.length; i++){
-                if(flag[i]) continue;
+            for (int i = 1; i <= perm.length; i++) {
+                if (flag[i]) continue;
                 perm[n] = i;
                 flag[i] = true;
                 make_perm(n + 1, perm, flag);
