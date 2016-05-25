@@ -2,6 +2,7 @@ package acm.tokyo2012_2;
 
 import java.util.Scanner;
 
+// サイコロ
 public class QcDice {
     static int[][] hMap, nMap;
 
@@ -19,11 +20,6 @@ public class QcDice {
                 int f = sc.nextInt();
                 Dice dice = new Dice(t, f);
                 dp(dice, n * 2, n * 2);
-                // System.out.println(i + ": ");
-                // System.out.println("h");
-                // arrayDump(hMap);
-                // System.out.println("n");
-                // arrayDump(nMap);
             }
             int[] res = new int[6];
             for (int i = 0; i < 4 * n; i++) {
@@ -39,17 +35,6 @@ public class QcDice {
             }
             System.out.println();
         }
-    }
-
-    public static void arrayDump(int[][] a) {
-        for (int i = 0; i < a.length; i++) {
-            for (int j = 0; j < a[0].length; j++) {
-                System.out.print(a[i][j] + " ");
-            }
-            System.out.println();
-        }
-        System.out.println();
-
     }
 
     public static void dp(Dice dice, int y, int x) {
