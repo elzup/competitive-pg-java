@@ -1,4 +1,4 @@
-package codeforces.rount311.div2;
+package codeforces.round311.div2;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.*;
 
-public class QaDiplomas {
+public class QbTeacup {
 
     static InputStream is;
     static PrintWriter out;
@@ -17,34 +17,18 @@ public class QaDiplomas {
 
     static void solve() {
         int n = ni();
-        int min1 = ni();
-        int max1 = ni();
-        int min2 = ni();
-        int max2 = ni();
-        int min3 = ni();
-        int max3 = ni();
-        int a = min1;
-        int b = min2;
-        int c = min3;
-
-        int least = n - (a + b + c);
-        if (least != 0) {
-            int t = Math.min(max1 - a, least);
-            a += t;
-            least -= t;
+        float l = ni();
+        int[] k = new int[n * 2];
+        for (int i = 0; i < n * 2; i++) {
+            k[i] = ni();
         }
-        if (least != 0) {
-            int t = Math.min(max2 - b, least);
-            b += t;
-            least -= t;
-        }
-        if (least != 0) {
-            int t = Math.min(max3 - c, least);
-            c += t;
-            least -= t;
-        }
-        System.out.println(a + " " + b + " " + c);
-
+        Arrays.sort(k);
+        float t = Math.min(k[n], l / n);
+        l -= t * n;
+        float a = t * n;
+        t = Math.min(k[0], Math.min((float)k[n] / 2, l / n));
+        float b = t * n;
+        System.out.println(a + b);
     }
 
     public static void main(String[] args) throws Exception {
