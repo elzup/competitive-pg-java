@@ -1,20 +1,23 @@
-package algo;
+package aoj.grl1;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
 // ワーシャルフロイド wf
-public class WarshallFloyd {
+public class QcAllShortPath {
     static final int INF = Integer.MAX_VALUE;
-
-    static int d[][];
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int en = sc.nextInt();
 
-        wfInit(n);
+        // wf 初期化
+        int[][] d = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            Arrays.fill(d[i], INF);
+            d[i][i] = 0;
+        }
         for (int i = 0; i < en; i++) {
             int s = sc.nextInt();
             int t = sc.nextInt();
@@ -24,7 +27,20 @@ public class WarshallFloyd {
             // d[t][s] = dist;
         }
 
-        wfExec(n);
+        // wf 実行
+        for (int k = 0; k < n; k++) {
+            for (int i = 0; i < n; i++) {
+                if (d[i][k] == INF) {
+                    continue;
+                }
+                for (int j = 0; j < n; j++) {
+                    if (d[k][j] == INF) {
+                        continue;
+                    }
+                    d[i][j] = Math.min(d[i][j], d[i][k] + d[k][j]);
+                }
+            }
+        }
 
         // negative loop check
         if (hasNegativeLoopWF(d)) {
@@ -40,32 +56,6 @@ public class WarshallFloyd {
         }
     }
 
-    public static void wfInit(int n) {
-        // wf 初期化
-        int[][] d = new int[n][n];
-        for (int i = 0; i < n; i++) {
-            Arrays.fill(d[i], INF);
-            d[i][i] = 0;
-        }
-    }
-
-    public static void wfExec(int n) {
-        // wf 実行
-        for (int k = 0; k < n; k++) {
-            for (int i = 0; i < n; i++) {
-                if (d[i][k] == INF) {
-                    continue;
-                }
-                for (int j = 0; j < n; j++) {
-                    if (d[k][j] == INF) {
-                        continue;
-                    }
-                    d[i][j] = Math.min(d[i][j], d[i][k] + d[k][j]);
-                }
-            }
-        }
-    }
-
     public static boolean hasNegativeLoopWF(int[][] a) {
         for (int i = 0; i < a.length; i++) {
             if (a[i][i] < 0) {
@@ -75,4 +65,3 @@ public class WarshallFloyd {
         return false;
     }
 }
-

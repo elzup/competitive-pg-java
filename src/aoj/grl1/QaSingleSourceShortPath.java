@@ -1,11 +1,10 @@
-package algo;
+package aoj.grl1;
 
 import java.util.*;
 
 // djkstra ダイクストラ
-public class Dijkstra {
+public class QaSingleSourceShortPath {
 
-    static int dist[][];
     static final int INF = Integer.MAX_VALUE;
 
     public static void main(String[] args) {
@@ -14,17 +13,18 @@ public class Dijkstra {
         int ve = sc.nextInt();
         int s = sc.nextInt();
 
-        List<Edge>[] edges = new List[vn];
+        // List<Edge>[] edges = new ArrayList<Edge>[vn];
+        List<List<Edge>> edges = new ArrayList<>();
 
         for (int i = 0; i < vn; i++) {
-            edges[i] = new ArrayList<>();
+            edges.add(new ArrayList<>());
         }
 
         for (int i = 0; i < ve; i++) {
             int a = sc.nextInt();
             int b = sc.nextInt();
             int f = sc.nextInt();
-            edges[a].add(new Edge(a, b, f));
+            edges.get(a).add(new Edge(a, b, f));
             // 無向グラフ
             // edges[b].add(new Edge(b, a, f));
         }
@@ -41,7 +41,7 @@ public class Dijkstra {
                 continue;
             }
 
-            for (Edge e2: edges[e1.target]) {
+            for (Edge e2 : edges.get(e1.target)) {
                 if (distance[e2.target] > distance[e1.target] + e2.cost) {
                     distance[e2.target] = distance[e1.target] + e2.cost;
                     queue.add(new Edge(e1.target, e2.target, distance[e2.target]));
@@ -72,3 +72,4 @@ public class Dijkstra {
         }
     }
 }
+
