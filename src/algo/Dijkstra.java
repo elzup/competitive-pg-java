@@ -2,7 +2,7 @@ package algo;
 
 import java.util.*;
 
-// djkstra ダイクストラ
+// dijkstra ダイクストラ
 public class Dijkstra {
 
     static int dist[][];
