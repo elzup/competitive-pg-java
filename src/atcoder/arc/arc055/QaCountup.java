@@ -1,0 +1,12 @@
+package atcoder.arc.arc055;
+
+import java.util.Scanner;
+
+public class QaCountup {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt() - 1;
+        String repeated = new String(new char[n]).replace("\0", "0");
+        System.out.println("1" + repeated + "7");
+    }
+}
