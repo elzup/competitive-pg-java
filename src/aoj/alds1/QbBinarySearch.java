@@ -1,11 +1,9 @@
-package algo;
+package aoj.alds1;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Scanner;
 
-// 二分探索 BinarySearch
-public class BinarySearch {
+public class QbBinarySearch {
     static int[] a;
 
     public static void main(String[] args) {
@@ -20,13 +18,10 @@ public class BinarySearch {
         for (int i = 0; i < q; i++) {
             int t = sc.nextInt();
             // Original
-            if (binarySearchContains(t)) {
-                c++;
-            }
+            c += binarySearchContains(t) ? 1 : 0;
+
             // Arrays.binarySearch
-            // if (Arrays.binarySearch(a, t) >= 0) {
-            //     c++;
-            // }
+            // c += Arrays.binarySearch(a, t) >= 0 ? 1 : 0;
         }
         System.out.println(c);
     }
