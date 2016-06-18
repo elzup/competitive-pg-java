@@ -2,6 +2,7 @@ package aoj.v2;
 
 import java.util.*;
 
+// dp, ticket
 public class Q0212HywayBus {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
