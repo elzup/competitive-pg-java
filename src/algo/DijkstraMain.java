@@ -29,9 +29,9 @@ public class DijkstraMain {
         int vn, en;
         int[] d;
 
-        @SuppressWarnings("unchecked")
         ArrayList<Edge>[] edges;
 
+        @SuppressWarnings("unchecked")
         Dijkstra(int vn, int en) {
             this.vn = vn;
             this.en = en;
