@@ -3,6 +3,7 @@ package algo;
 import java.util.Arrays;
 import java.util.Scanner;
 
+// Kruskal, group UnionFind
 public class Kruskal {
 
     public static void main(String[] args) {

@@ -2,6 +2,7 @@ package algo;
 
 import java.util.Scanner;
 
+// dp, Knapsack
 public class KnapsackBottomUp {
     static int n, w;
     static int[] value, weight;
