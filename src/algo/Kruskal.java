@@ -33,36 +33,45 @@ public class Kruskal {
     }
 
     static class UnionFind {
-        public int[] v;
+        int[] gid, rank;
         int groups;
 
         UnionFind(int n) {
-            v = new int[n];
+            gid = new int[n];
+            rank = new int[n];
             for (int i = 0; i < n; i++) {
-                v[i] = i;
+                gid[i] = i;
+                rank[i] = 0;
             }
             groups = n;
         }
 
-        int find(int p) {
-            if (v[p] == p) {
-                return p;
+        int find(int a) {
+            if (gid[a] == a) {
+                return a;
             }
-            return v[p] = find(v[p]);
+            return gid[a] = find(gid[a]);
         }
 
         boolean equals(int a, int b) {
-            return this.find(a) == this.find(b);
+            return find(a) == find(b);
         }
 
-        int merge(int p, int q) {
-            p = find(p);
-            q = find(q);
-            if (p != q) {
-                v[q] = p;
-                groups--;
+        int merge(int a, int b) {
+            int ra = find(a);
+            int rb = find(b);
+            if (ra == rb) {
+                return groups;
             }
-            return groups;
+            if (rank[ra] < rank[rb]) {
+                gid[ra] = rb;
+            } else {
+                gid[rb] = ra;
+                if (rank[ra] == rank[rb]) {
+                    rank[ra]++;
+                }
+            }
+            return groups --;
         }
     }
 

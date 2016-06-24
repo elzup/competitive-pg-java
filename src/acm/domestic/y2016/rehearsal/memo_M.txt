@@ -1,0 +1,99 @@
+SortNum{range=2, num=2707}
+SortNum{range=2, num=10680}
+SortNum{range=2, num=12879}
+SortNum{range=2, num=18189}
+SortNum{range=2, num=24178}
+SortNum{range=2, num=74325}
+SortNum{range=2, num=75052}
+SortNum{range=2, num=113799}
+SortNum{range=2, num=118095}
+SortNum{range=2, num=126062}
+SortNum{range=2, num=138403}
+SortNum{range=2, num=160528}
+SortNum{range=2, num=189502}
+SortNum{range=2, num=194072}
+SortNum{range=2, num=197229}
+SortNum{range=2, num=223716}
+SortNum{range=2, num=247400}
+SortNum{range=2, num=249081}
+SortNum{range=2, num=251536}
+SortNum{range=2, num=251587}
+SortNum{range=2, num=256729}
+SortNum{range=2, num=323608}
+SortNum{range=2, num=325374}
+SortNum{range=2, num=338080}
+SortNum{range=2, num=350316}
+SortNum{range=2, num=385219}
+SortNum{range=2, num=442009}
+SortNum{range=2, num=472587}
+SortNum{range=2, num=497593}
+SortNum{range=2, num=542709}
+SortNum{range=2, num=580106}
+SortNum{range=2, num=584384}
+SortNum{range=2, num=627835}
+SortNum{range=2, num=641357}
+SortNum{range=2, num=648316}
+SortNum{range=2, num=658666}
+SortNum{range=2, num=677375}
+SortNum{range=2, num=735965}
+SortNum{range=2, num=749609}
+SortNum{range=2, num=752155}
+SortNum{range=2, num=761993}
+SortNum{range=2, num=822906}
+SortNum{range=2, num=823766}
+SortNum{range=2, num=825350}
+SortNum{range=2, num=836705}
+SortNum{range=2, num=864995}
+SortNum{range=2, num=897157}
+SortNum{range=2, num=968413}
+SortNum{range=2, num=972229}
+SortNum{range=49, num=251538}
+SortNum{range=725, num=74327}
+SortNum{range=858, num=822908}
+SortNum{range=1582, num=823768}
+SortNum{range=1679, num=247402}
+SortNum{range=1764, num=323610}
+SortNum{range=2197, num=10682}
+SortNum{range=2453, num=249083}
+SortNum{range=2544, num=749611}
+// SortNum{range=2705, num=2}
+SortNum{range=3155, num=194074}
+SortNum{range=3814, num=968415}
+SortNum{range=4276, num=580108}
+SortNum{range=4294, num=113801}
+SortNum{range=4568, num=189504}
+SortNum{range=5140, num=251589}
+SortNum{range=5308, num=12881}
+SortNum{range=5987, num=18191}
+SortNum{range=6957, num=641359}
+SortNum{range=7965, num=118097}
+// SortNum{range=7971, num=2709}
+SortNum{range=9836, num=752157}
+SortNum{range=10348, num=648318}
+// SortNum{range=11353, num=825352}
+// SortNum{range=12234, num=338082}
+// SortNum{range=12339, num=126064}
+// SortNum{range=12704, num=325376}
+// SortNum{range=13520, num=627837}
+// SortNum{range=13642, num=735967}
+// SortNum{range=18707, num=658668}
+// SortNum{range=22123, num=138405}
+// SortNum{range=23682, num=223718}
+// SortNum{range=25004, num=472589}
+// SortNum{range=26485, num=197231}
+// SortNum{range=27769, num=972231}
+// SortNum{range=28288, num=836707}
+// SortNum{range=28972, num=160530}
+// SortNum{range=30576, num=442011}
+// SortNum{range=32160, num=864997}
+// SortNum{range=34901, num=350318}
+// SortNum{range=37395, num=542711}
+// SortNum{range=38745, num=75054}
+// SortNum{range=43449, num=584386}
+// SortNum{range=45114, num=497595}
+// SortNum{range=50145, num=24180}
+// SortNum{range=56788, num=385221}
+// SortNum{range=58588, num=677377}
+// SortNum{range=60911, num=761995}
+// SortNum{range=66877, num=256731}
+// SortNum{range=71254, num=897159}

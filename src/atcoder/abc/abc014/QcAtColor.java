@@ -2,15 +2,14 @@ package atcoder.abc.abc014;
 
 import java.util.*;
 
-public class Main {
+// imosu
+public class QcAtColor {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int[] bl = new int[1000002];
-        Map<Integer, Integer> map = new HashMap<>();
         int last = 0;
         int start = 0;
-        // ArrayList<Range> ranges = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             int a = sc.nextInt();
             int b = sc.nextInt();

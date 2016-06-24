@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+// 2015 C問題, compiler
 public class C {
     public static int INF = Integer.MAX_VALUE;
     static Scanner sc;
@@ -22,7 +23,7 @@ public class C {
             }
             nl();
 
-            Element root = null;
+            Element root;
             String ls = nl();
             if (ls.equals("+")) {
                 root = new Plus();
@@ -50,7 +51,6 @@ public class C {
 
         end();
     }
-
     public static void init() {
         try {
             System.setProperty("line.separator", "\r\n");
@@ -61,37 +61,21 @@ public class C {
             e.printStackTrace();
         }
     }
-
     public static void end() {
         sc.close();
         pw.close();
     }
-
     public static int ni() {
         return sc.nextInt();
     }
-
     public static String nl() {
         return sc.nextLine();
     }
-
 }
 
 interface Element {
-    public int calc();
-    public void add(int level, Element value);
-}
-
-class Operand implements Element {
-    int value;
-    public int calc() {
-        return value;
-    }
-    public void add(int level, Element value) {};
-
-    Operand(int value) {
-        this.value = value;
-    }
+    int calc();
+    void add(int level, Element value);
 }
 
 abstract class Operator implements Element {
@@ -112,10 +96,22 @@ abstract class Operator implements Element {
     }
 }
 
+class Operand implements Element {
+    int value;
+    public int calc() {
+        return value;
+    }
+    public void add(int level, Element value) {
+    }
+    Operand(int value) {
+        this.value = value;
+    }
+}
+
 class Plus extends Operator {
-    public int calc () {
+    public int calc() {
         int ans = 0;
-        for (Element e: elements) {
+        for (Element e : elements) {
             ans += e.calc();
         }
         return ans;
@@ -123,9 +119,9 @@ class Plus extends Operator {
 }
 
 class Multi extends Operator {
-    public int calc () {
+    public int calc() {
         int ans = 1;
-        for (Element e: elements) {
+        for (Element e : elements) {
             ans *= e.calc();
         }
         return ans;
