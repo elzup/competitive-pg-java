@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class D {
     static int n;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         while (true) {
@@ -36,22 +37,25 @@ public class D {
                     if (dp[l][r - 2] && dp[r - 1][r]) {
                         check[r - 1] = check[r] = true;
                         dp[l][r] = true;
-                    } if (dp[l + 1][r - 1] && Math.abs(a[l] - a[r]) <= 1) {
+                    }
+                    if (dp[l + 1][r - 1] && Math.abs(a[l] - a[r]) <= 1) {
                         check[l] = check[r] = true;
                         dp[l][r] = true;
-                    } if (dp[l + 2][r] && dp[l][l + 1]) {
+                    }
+                    if (dp[l + 2][r] && dp[l][l + 1]) {
                         check[l] = check[l + 1] = true;
                         dp[l][r] = true;
                     }
                 }
             }
             int t = 0;
-            for (boolean c: check) {
+            for (boolean c : check) {
                 if (c) {
                     t++;
                 }
             }
             System.out.println(t - (t % 2));
+
             // ArrayList<Integer> w = new ArrayList<>();
             // for (int i = 0; i < n; i++) {
             //     w.add(sc.nextInt());
