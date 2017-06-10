@@ -9,7 +9,7 @@ public class PrimeFirstDigitChain {
     static int max, start, skip;
 
     public static void main(String[] args) {
-        max = 100000;
+        max = 10000000;
         // max = 10000;
         // max = 100;
         start = 0;
