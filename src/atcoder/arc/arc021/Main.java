@@ -1,4 +1,4 @@
-package atcoder.abc.arc021;
+package atcoder.arc.arc021;
 
 import java.util.Scanner;
 
