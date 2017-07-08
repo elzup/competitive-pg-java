@@ -1,15 +1,10 @@
 package acm.domestic.y2015;
 
-import java.io.*;
 import java.util.Scanner;
 
 public class B {
     public static int INF = Integer.MAX_VALUE;
     static Scanner sc;
-    static PrintWriter pw;
-    static String id = "B";
-    static String input = "/Users/hiro/Downloads/" + id;
-    static String output = "src/acm/tsukuba2015/out_" + id + ".txt";
 
     public static void main(String[] args) {
         init();
@@ -49,26 +44,18 @@ public class B {
             }
             if (i != a) {
                 // System.out.println(i + 1);
-                pw.println(i + 1);
+                System.out.println(i + 1);
             }
         }
         end();
     }
 
     public static void init() {
-        try {
-            System.setProperty("line.separator", "\r\n");
-            sc = new Scanner(new File(input));
-            BufferedWriter bw = new BufferedWriter(new FileWriter(new File(output)));
-            pw = new PrintWriter(bw);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        sc = new Scanner(System.in);
     }
 
     public static void end() {
         sc.close();
-        pw.close();
     }
 
     public static int ni() {

@@ -1,10 +1,8 @@
 package acm.domestic.y2016;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Scanner;
 
-/**
- * Created by hiro on 2016/06/24.
- */
 public class B {
 
     public static void main(String[] args) {

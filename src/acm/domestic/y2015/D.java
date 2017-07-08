@@ -1,55 +1,36 @@
 package acm.domestic.y2015;
 
-import java.io.*;
 import java.util.Scanner;
 
 public class D {
-    public static int INF = Integer.MAX_VALUE;
-    static Scanner sc;
-    static PrintWriter pw;
-    static String id = "D";
-    static String input = "/Users/hiro/Downloads/" + id;
-    static String output = "src/acm/tsukuba2015/out_" + id + ".txt";
+  public static int INF = Integer.MAX_VALUE;
 
-    public static void main(String[] args) {
-        init();
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
 
-        System.out.println(1 << 10);
-        System.out.println(1 << 100);
-        while (true) {
-            int n = ni();
-            if (n == 0) {
-                break;
-            }
-            int[] vs = new int[n];
-            for (int i = 0; i < n; i++) {
-                vs[i] = ni();
-            }
+    while (true) {
+      int n = sc.nextInt();
+      if (n == 0) {
+        break;
+      }
+      int l = 5000 * 100 + 1;
+      int[][] v = new int[n + 1][l];
+      int[][] o = new int[n + 1][l];
+      for (int j = 0; j < n + 1; j++) {
+        for (int i = 0; i < l; i++) {
+          v[j][i] = -1;
+          o[j][i] = -1;
         }
-        end();
-    }
-
-    public static void init() {
-        try {
-            System.setProperty("line.separator", "\r\n");
-            sc = new Scanner(new File(input));
-            BufferedWriter bw = new BufferedWriter(new FileWriter(new File(output)));
-            pw = new PrintWriter(bw);
-        } catch (IOException e) {
-            e.printStackTrace();
+      }
+      v[0][0] = 0;
+      o[0][0] = 0;
+      for (int j = 0; j < n + 1; j++) {
+        for (int i = 0; i < l; i++) {
+          if (v[j][i] == -1) {
+            continue;
+          }
         }
+      }
     }
-
-    public static void end() {
-        sc.close();
-        pw.close();
-    }
-
-    public static int ni() {
-        return sc.nextInt();
-    }
-
-    public static String nl() {
-        return sc.nextLine();
-    }
+  }
 }

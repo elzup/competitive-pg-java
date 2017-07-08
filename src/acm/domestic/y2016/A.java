@@ -2,9 +2,6 @@ package acm.domestic.y2016;
 
 import java.util.Scanner;
 
-/**
- * Created by hiro on 2016/06/24.
- */
 public class A {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
