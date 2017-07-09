@@ -7,7 +7,7 @@ public class A {
     public static int INF = Integer.MAX_VALUE;
     static Scanner sc;
     static PrintWriter pw;
-    static String id = "A";
+    static String id = "QaSurbal";
     static String input = "/Users/hiro/Downloads/" + id;
     static String output = "src/acm/tsukuba2015/out_" + id + ".txt";
 

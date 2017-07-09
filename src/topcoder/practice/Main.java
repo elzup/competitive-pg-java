@@ -12,7 +12,7 @@ public class Main {
 
   public static String createString(int n, int k) {
     if (k == 0) {
-      return String.join("", Collections.nCopies(n - 1, "B")) + "A";
+      return String.join("", Collections.nCopies(n - 1, "QbColorfulHats")) + "QaSurbal";
     }
     int t1 = k;
     int t2 = k;
@@ -31,9 +31,9 @@ public class Main {
     System.out.println(n);
     System.out.println(t1);
     System.out.println(t2);
-    String suffix = String.join("", Collections.nCopies(n - t1 - t2, "A"));
-    String a = String.join("", Collections.nCopies(t1, "A"));
-    String b = String.join("", Collections.nCopies(t2, "B"));
+    String suffix = String.join("", Collections.nCopies(n - t1 - t2, "QaSurbal"));
+    String a = String.join("", Collections.nCopies(t1, "QaSurbal"));
+    String b = String.join("", Collections.nCopies(t2, "QbColorfulHats"));
     return suffix + a + b;
   }
 }

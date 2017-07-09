@@ -28,9 +28,9 @@ public class Q7AGrading {
             if ((m == -1 || f == -1) || p < 30) {
                 res = "F";
             } else if (p >= 80) {
-                res = "A";
+                res = "QaSurbal";
             } else if (p >= 65) {
-                res = "B";
+                res = "QbColorfulHats";
             } else if (p >= 50 || (p >= 30 && r >= 50)) {
                 res = "C";
             }

@@ -24,7 +24,7 @@ public class Main {
                 int t = sc.nextInt() - 1;
                 int c = sc.nextInt();
                 String com = sc.next();
-                edges[i] = new Edge(f, t, c, com.equals("A") ? 1 : 0);
+                edges[i] = new Edge(f, t, c, com.equals("QaSurbal") ? 1 : 0);
             }
             double l = -100;
             double r = 100;

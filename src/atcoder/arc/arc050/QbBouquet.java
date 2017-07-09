@@ -15,7 +15,7 @@ public class QbBouquet {
         long tUp = Long.MAX_VALUE;
         long tDown = 0;
 
-        // for (int i = 0; i < Math.max(R, B); i++) { System.out.println(i + ": " + (canCreate(i) ? "OK" : "NO")); }
+        // for (int i = 0; i < Math.max(R, QbColorfulHats); i++) { System.out.println(i + ": " + (canCreate(i) ? "OK" : "NO")); }
 
         while (tUp - tDown >= 2) {
             // System.out.println(t);
