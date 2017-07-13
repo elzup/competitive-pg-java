@@ -4,31 +4,29 @@ import java.util.Scanner;
 
 public class F {
   public static final long mod7 = 1000000007L;
+
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
     int n = sc.nextInt();
     int k = sc.nextInt();
-    long[][] dp = new long[2][n + 1];
-    dp[0][0] = 0;
-    dp[0][1] = 1;
-    dp[1][0] = 1;
-    dp[1][1] = 1;
-    for (int i = 1; i < k - 1; i++) {
-      dp[i][0] = dp[i - 1][0] + dp[i - 1][1];
-      dp[i][1] = dp[i - 1][0] + dp[i - 1][1];
+    long[] dp = new long[n + 2];
+    long[] sum = new long[n + 3];
+    dp[0] = 1;
+    sum[1] = 1;
+    for (int i = 1; i <= n + 1; i++) {
+      if (i != 1 && i != n) {
+        dp[i] = (sum[i] - sum[(int) Math.max(i - k, 0L)] + mod7) % mod7;
+      }
+      sum[i + 1] += dp[i] + sum[i];
+      sum[i + 1] %= mod7;
     }
-    // k - 1
-    for (int i = k - 1; i < n; i++) {
-      long pre = i - k < 0 ? 0 : dp[i - k];
-      long pre2 = i - k - 1 < 0 ? 0 : dp[i - k - 1];
-      dp[i] = 2 * dp[i - 1] - pre + pre2;
-      System.out.println(i + "] " + dp[i]);
-    }
-    dp[n] = dp[n - 1] - dp[n - k];
-    System.out.println("n - 1: " + dp[n - 1]);
-    System.out.println("n - k: " + dp[n - k]);
-    System.out.println(dp[n]);
+//    for (int i = 0; i < dp.length; i++) {
+//      System.out.printf("%4d", dp[i]);
+//    }
+    System.out.println();
+    System.out.println(dp[n + 1]);
   }
+
   // a ^ b (mod p)
   static long powMod(long a, long b, long p) {
     if (b == 0) {
